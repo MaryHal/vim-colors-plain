@@ -27,9 +27,11 @@ let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
 let s:light_black     = { "gui": "#424242", "cterm": "8"   }
 let s:lighter_black   = { "gui": "#545454", "cterm": "240" }
 let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
+let s:ultra_subtle_black = { "gui": "#282828", "cterm": "235" }
 let s:light_gray      = { "gui": "#999999", "cterm": "249" }
 let s:lighter_gray    = { "gui": "#CCCCCC", "cterm": "251" }
 let s:lightest_gray   = { "gui": "#E5E5E5", "cterm": "251" }
+let s:ultra_light_gray= { "gui": "#E9E9E9", "cterm": "252" }
 let s:pink            = { "gui": "#FB007A", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
@@ -62,6 +64,7 @@ if &background == "dark"
   let s:cursor_line     = s:subtle_black
   let s:status_line     = s:light_gray
   let s:status_line_nc  = s:light_black
+  let s:status_line_bg  = s:ultra_subtle_black
   let s:constant        = s:light_blue
   let s:comment         = s:light_gray
   let s:selection       = s:light_yellow
@@ -81,6 +84,7 @@ else
   let s:cursor_line     = s:lightest_gray
   let s:status_line     = s:light_black
   let s:status_line_nc  = s:light_gray
+  let s:status_line_bg  = s:ultra_light_gray
   let s:constant        = s:dark_blue
   let s:comment         = s:light_gray
   let s:selection       = s:light_yellow
@@ -192,14 +196,14 @@ hi link helpHyperTextJump  String
 
 """ StatusLine
 
-call s:h("StatusLine",        {"gui": "underline", "bg": s:bg, "fg": s:status_line})
-call s:h("StatusLineNC",      {"gui": "underline", "bg": s:bg, "fg": s:status_line_nc})
+call s:h("StatusLine",        {"bg": s:status_line_bg, "fg": s:status_line})
+call s:h("StatusLineNC",      {"bg": s:status_line_bg, "fg": s:status_line_nc})
 
 " Those are not standard but are useful to emphasis different parts of the
 " status line.
-call s:h("StatusLineOk",      {"gui": "underline", "bg": s:bg, "fg": s:green})
-call s:h("StatusLineError",   {"gui": "underline", "bg": s:bg, "fg": s:pink})
-call s:h("StatusLineWarning", {"gui": "underline", "bg": s:bg, "fg": s:warning})
+call s:h("StatusLineOk",      {"gui": "underline", "bg": s:status_line_bg, "fg": s:green})
+call s:h("StatusLineError",   {"gui": "underline", "bg": s:status_line_bg, "fg": s:pink})
+call s:h("StatusLineWarning", {"gui": "underline", "bg": s:status_line_bg, "fg": s:warning})
 
 call s:h("Pmenu",         {"fg": s:norm, "bg": s:cursor_line})
 call s:h("PmenuSel",      {"fg": s:norm, "bg": s:bg_subtle, "gui": "bold"})
